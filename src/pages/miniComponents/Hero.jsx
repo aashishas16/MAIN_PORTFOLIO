@@ -12,7 +12,9 @@ import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+
 const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const Hero = () => {
   const [user, setUser] = useState({});
   useEffect(() => {
@@ -21,15 +23,15 @@ const Hero = () => {
         `${BASE_URL}/api/v1/user/portfolio/me`,
         { withCredentials: true }
       );
-      console.log(data);
       setUser(data.user);
     };
     getMyProfile();
   }, []);
 
-  // Add the new resume link here
+  const github = "https://github.com/aashishas16";
   const newResumeLink =
-    "https://drive.google.com/file/d/1PEqp7x18BS00gkDociHNKBKnTfzYDDu3/view?usp=drive_link";
+    "https://drive.google.com/file/d/1vcHqjxiIG_iNGNXoW82oJMikJqqKI0Ic/view";
+  const dashboardLink = "https://protfolio-dashbord.vercel.app/";
 
   return (
     <div className="w-full">
@@ -41,7 +43,7 @@ const Hero = () => {
         className="overflow-x-hidden text-[1.3rem] sm:text-[1.75rem]
       md:text-[2.2rem] lg:text-[2.8rem] tracking-[2px] mb-4"
       >
-        Hey, I'm Aashish Singune
+        Hey, I'm {user.fullName}
       </h1>
       <h1
         className="text-tubeLight-effect overflow-x-hidden text-[1.3rem]
@@ -56,7 +58,6 @@ const Hero = () => {
           delaySpeed={1000}
         />
       </h1>
-      {console.log(user)}
       <div
         className="w-fit px-5 py-2 bg-slate-50 rounded-[20px] flex gap-5
       items-center mt-4 md:mt-8 lg:mt-10"
@@ -67,37 +68,55 @@ const Hero = () => {
         >
           <Youtube className="text-red-500 w-7 h-7" />
         </Link>
-        <Link to={"https://www.instagram.com/"} target="_blank">
+        <Link to={user.instagramURL} target="_blank">
           <Instagram className="text-pink-500 w-7 h-7" />
         </Link>
         <Link to={"https://www.facebook.com/"} target="_blank">
           <Facebook className="text-blue-800 w-7 h-7" />
         </Link>
-        <Link
-          to={"https://www.linkedin.com/in/aashish-singune-76b33724a/"}
-          target="_blank"
-        >
+        <Link to="https://www.linkedin.com/in/aashish-gurjar-76b33724a/" target="_blank">
           <Linkedin className="text-sky-500 w-7 h-7" />
         </Link>
         <Link to={"https://x.com/?lang=en"} target="_blank">
           <Twitter className="text-blue-800 w-7 h-7" />
         </Link>
       </div>
-      <div className="mt-4 md:mt-8 lg:mt-10  flex gap-3">
+      <div className="mt-4 md:mt-8 lg:mt-10 flex flex-wrap gap-3">
         <Link to={user.githubURL} target="_blank">
-          <Button className="rounded-[30px] flex items-center gap-2 flex-row">
+          <Button
+            className="rounded-[30px] flex items-center gap-2 flex-row
+            px-4 py-2 md:px-6 md:py-3 bg-gray-800 text-white
+            hover:bg-gray-700 transition-all duration-300 ease-in-out
+            transform hover:scale-105 shadow-lg w-full sm:w-auto text-center"
+          >
             <span>
               <Github />
             </span>
-            <span>Github</span>
+            <span>GitHub</span>
           </Button>
         </Link>
         <Link to={newResumeLink} target="_blank">
-          <Button className="rounded-[30px] flex items-center gap-2 flex-row">
+          <Button
+            className="rounded-[30px] flex items-center gap-2 flex-row
+            px-4 py-2 md:px-6 md:py-3 bg-gray-800 text-white
+            hover:bg-gray-700 transition-all duration-300 ease-in-out
+            transform hover:scale-105 shadow-lg w-full sm:w-auto text-center"
+          >
             <span>
               <ExternalLink />
             </span>
-            <span>Resume </span>
+            <span>Resume</span>
+          </Button>
+        </Link>
+        <Link to={dashboardLink}>
+          <Button
+            className="rounded-[30px] flex items-center gap-2 flex-row
+            px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-blue-500 to-purple-500
+            text-white hover:from-blue-600 hover:to-purple-600
+            transition-all duration-300 ease-in-out
+            transform hover:scale-105 shadow-lg w-full sm:w-auto text-center"
+          >
+            <span>Dashboard</span>
           </Button>
         </Link>
       </div>

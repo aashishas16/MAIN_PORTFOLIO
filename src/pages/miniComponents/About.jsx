@@ -43,11 +43,6 @@ I am originally from Indore.
             </p>
           </div>
         </div>
-        <p className="tracking-[1px] text-xl">
-          My dedication and perseverance in timely delivery of work are integral
-          to me. I maintain the courage to face any challenges for extended
-          periods.
-        </p>
       </div>
     </div>
   );
